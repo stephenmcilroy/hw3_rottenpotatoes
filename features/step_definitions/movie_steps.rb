@@ -26,16 +26,11 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.content  is the entire content of the page as a string.
   #  page.body is the pages html body as one giant string.
-  # /.*e1.to_s.*/ < /.*e2.to_s.*/ then el before e2
+ 
   regex1 = Regexp.new(".*" + e1 + ".*")
-  p regex1
   regex2 = Regexp.new(".*" + e2 + ".*")
-  p regex2
-  p1 = regex1 =~ page.body
-  p2 = regex2 =~ page.body
-  p p1
-  p p2
-  if p1 < p2
+  
+  if (regex1 =~ page.body) < (regex2 =~ page.body)
     assert true
   else
     assert false
