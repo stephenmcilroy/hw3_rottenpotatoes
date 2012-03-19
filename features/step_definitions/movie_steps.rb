@@ -14,6 +14,7 @@ end
 Then /I should see (all|none) of the movies/ do |view|
   rows = page.all('table#movies tbody tr').size
   if view == 'all'
+    p rows
     rows.should == @movie_count
   elsif view == 'none'
     rows.should == 0
@@ -52,4 +53,10 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
       step %Q{I check "ratings_#{r}"}
     end
   end	
+end
+
+Then /the director of "(.*)" should be "(.*)"/ do |movie, director|
+  step %Q{I should see "#{movie} was successfully updated"}
+  step %Q{I should see "Director:"}
+  step %Q{I should see "#{director}"}
 end
