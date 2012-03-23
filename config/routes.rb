@@ -12,8 +12,10 @@ Rottenpotatoes::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  
   resources :movies
-
+  match '/movies/similar_movies/:title' => 'movies#similar_movies', :as => :similar_movies
+  
   # Sample resource route with options:
   #   resources :products do
   #     member do
@@ -56,5 +58,4 @@ Rottenpotatoes::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
-
 end

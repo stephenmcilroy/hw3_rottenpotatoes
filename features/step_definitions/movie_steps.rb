@@ -11,6 +11,12 @@ Given /the following movies exist/ do |movies_table|
   assert @movie_count
 end
 
+And /add the following movie/ do |movies_table|
+  movies_table.hashes.each do |movie|
+    @movie = Movie.create!(movie)
+  end
+end
+
 Then /I should see (all|none) of the movies/ do |view|
   rows = page.all('table#movies tbody tr').size
   if view == 'all'
@@ -59,4 +65,8 @@ Then /the director of "(.*)" should be "(.*)"/ do |movie, director|
   step %Q{I should see "#{movie} was successfully updated"}
   step %Q{I should see "Director:"}
   step %Q{I should see "#{director}"}
+end
+
+When /^I confirm popup$/ do
+  click_button("Ok")   
 end

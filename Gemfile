@@ -16,6 +16,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'ZenTest'
+  gem 'simplecov', :require => false
 end
 group :production do
 #  gem 'pg'
