@@ -50,5 +50,28 @@ describe MoviesController do
       end
     end
   end
-end
-    
+  describe 'Delete Movie' do
+    before :each do
+      @fake_movie = mock('Movie', :destroy => true)
+    end
+    it 'should call method to search Movie DB by title for Director' do
+      Movie.should_receive(:find).with("1").
+        and_return(@fake_movie)
+      @fake_movie.stub(:title).and_return('atitle')
+      post :destroy, {:id => "1"}
+    end
+    describe 'after a no director search' do
+      before :each do
+        Movie.stub(:find).and_return(@fake_movie)
+        @fake_movie.stub(:title).and_return('atitle')
+        post :destroy, {:id => "1"}
+      end
+      it 'should flash specific notice' do
+        flash[:notice].should eql "Movie 'atitle' deleted."  
+      end
+      it 'should redirect to the home page' do
+        response.should redirect_to movies_path
+      end
+    end
+  end
+end  
