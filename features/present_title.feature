@@ -5,5 +5,5 @@ Feature: Present Application Title
   I want use the movies application
 Scenario: Application Title
   Given  I am on the RottenPotatoes home page
-  Then I should see "Rotten Potatoes!!"
+  Then I should see "Rotten Potatoes+"
  
